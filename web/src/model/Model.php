@@ -50,6 +50,7 @@ class Model
             // table doesn't exist
             // create it and populate with sample data
 
+            // Sample
             $result = $this->db->query(
                                 "CREATE TABLE `account` (
                                           `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -68,8 +69,18 @@ class Model
                 // handle appropriately
                 error_log("Failed creating sample data!",0);
             }
+
+            // Actual:
+            $result = $this->db->query(
+                "CREATE TABLE `BankAccountModel` (
+                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+                                          `name` varchar(256) DEFAULT NULL,
+                                          PRIMARY KEY (`id`) );"
+            );
+
+
+
         }
         //----------------------------------------------------------------------------
-
     }
 }
