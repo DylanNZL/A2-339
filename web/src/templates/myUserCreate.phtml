@@ -2,7 +2,7 @@
     <!---------- Body starts --------------->
     <h1>Please Sign Up</h1>
     <br>
-    <form action="/User/CreateAccount" method="post">
+    <form action="/MyUser/Create" method="post">
         First Name: <input class="createaccounttext" type="text" name="fname" placeholder="John"><br>
         Last Name: <input class="createaccounttext" type="text" name="lname" placeholder="Smith"><br>
         Phone Number <input class="createaccounttext" type="tel" name="phone" placeholder="1-888-888-8888"><br>
@@ -10,9 +10,10 @@
         <br><h3>Login Details</h3>
         Email: <input class="createaccounttext" type="email" name="email" placeholder="example@email.com"><br>
         Password: <input class="createaccounttext" type="password" name="password" placeholder="******"><br>
-        Confirm Password: <input class="createaccounttext" type="password" name="password" placeholder="******"><br>
+        Confirm Password: <input class="createaccounttext" type="password" name="confirmpassword" placeholder="******"><br>
         <input type="submit">
     </form>
     <br>
+    <?php echo "<p id='error'>$error</p>" ?>
     <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>

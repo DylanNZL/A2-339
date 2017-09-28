@@ -96,9 +96,9 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/MyUser/Create', array(
-            '_controller' => 'agilman\a2\controller\MyUserController::createAction',
-            'methods' => 'GET',
-            'name' => 'myUserCreate'
+            '_controller' => 'agilman\a2\controller\MyUserController::createAccountAction',
+            'methods' => 'POST',
+            'name' => 'myUserCreateAccount'
         )
     )
 );
