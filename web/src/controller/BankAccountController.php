@@ -30,9 +30,10 @@ class BankAccountController extends Controller
         echo $view->render();
 
     }
-    public function createBankAccountAction($accountName) {
+    public function createBankAccountAction() {
         $bankAccount = new BankAccountModel();
-        $bankAccount->setName($accountName);
+        $bankAccount->setName("test");
+        $bankAccount->save();
 
 
     }
