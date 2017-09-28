@@ -43,7 +43,9 @@ class BankAccountController extends Controller
     public function createBankAccountAction() {
         $bankAccount = new BankAccountModel();
         $bankAccount->setName("test");
+        $bankAccount->
         $bankAccount->save();
+        $this->indexAction();
 
 
     }
