@@ -108,7 +108,7 @@ $collection->attachRoute(
         '/BankAccount/', array(
             '_controller' => 'agilman\a2\controller\BankAccountController::indexAction',
             'methods' => 'GET',
-            'name' => 'actionIndex'
+            'name' => 'bankIndex'
         )
     )
 );
@@ -146,20 +146,10 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/Transaction/create', array(
+        '/Transaction/Create', array(
             '_controller' => 'agilman\a2\controller\TransactionController::createAction',
             'methods' => 'GET',
             'name' => 'bankAccountCreate'
-        )
-    )
-);
-
-$collection->attachRoute(
-    new Route(
-        '/BankAccount/:id', array(
-            '_controller' => 'agilman\a2\controller\BankAccountController::singleAction',
-            'methods' => 'GET',
-            'name' => 'bankAccountSingle'
         )
     )
 );

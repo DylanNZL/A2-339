@@ -160,8 +160,6 @@ class MyUserModel extends Model
             $this->_password = $result["password"];
             $this->_email = $email;
         }
-
-
         return $this;
     }
 

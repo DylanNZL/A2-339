@@ -17,6 +17,7 @@ class MyUserController extends Controller
     public function indexAction() {
         $view = new View('myUserIndex');
         echo $view->render();
+//        $_COOKIE['MyUserID'] = null;
     }
 
     public function loginAction() {
@@ -34,8 +35,6 @@ class MyUserController extends Controller
             return;
         }
 
-        error_log($password);
-        error_log($myUser->getPassword());
         if ($myUser->getPassword() != $password) {
             $view = new View('myUserIndex');
             $view->addData("error", "Invalid Password");
@@ -44,7 +43,8 @@ class MyUserController extends Controller
             return;
         }
 
-        error_log("WE GOT THERE!");
+        // Set cookie
+        $_SESSION['MyUserId'] = $myUser->getId();
         BankAccountController::indexAction();
     }
 

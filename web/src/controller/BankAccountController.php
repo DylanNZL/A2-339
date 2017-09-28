@@ -20,12 +20,22 @@ class BankAccountController extends Controller
     }
 
     public function indexAction() {
-        // TODO: Dynamic
-        $bankAccountCollection = new BankAccountCollectionModel(1);
+        error_log($_SESSION['MyUserId']);
+        // Check user has logged in
+        if (!isset($_SESSION['MyUserId']) || $_SESSION['MyUserId'] == null) {
+            $view = new View('myUserIndex');
+            echo $view->render();
+            echo $_SESSION['MyUserId'];
+            return;
+        }
+
+        // Get users bank accounts
+        $bankAccountCollection = new BankAccountCollectionModel($_SESSION['MyUserId']);
         $bankAccounts = $bankAccountCollection->getAccounts();
+
+        // Render
         $view = new View('bankAccountIndex');
         $view->addData("bankAccounts", $bankAccounts);
         echo $view->render();
-
     }
 }
