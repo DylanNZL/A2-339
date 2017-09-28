@@ -172,20 +172,24 @@ class MyUserModel extends Model
      */
     public function save()
     {
-        if (!isset($this->_id)) {
-            // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `my_user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email,$this->_password);")) {
-                // throw new ...
-            }
-            $this->_id = $this->db->insert_id;
-        } else {
-            // saving existing account - perform UPDATE
-            if (!$result = $this->db->query("UPDATE `my_user` SET `address` = $this->_address, `phone` = $this->_phone, `email` =$this->_email WHERE `id` = $this->_id;")) {
-                // throw new ...
-            }
+//        if (!isset($this->_id)) {
+//            // New account - Perform INSERT
+//            if (!$result = $this->db->query("INSERT INTO `my_user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email,$this->_password);")) {
+//                // throw new ...
+//            }
+//            $this->_id = $this->db->insert_id;
+//        } else {
+//            // saving existing account - perform UPDATE
+//            if (!$result = $this->db->query("UPDATE `my_user` SET `address` = $this->_address, `phone` = $this->_phone, `email` =$this->_email WHERE `id` = $this->_id;")) {
+//                // throw new ...
+//            }
+//
+//        }
+        error_log("this is being called");
+        $this->db->query("INSERT INTO 'my_user' (id, fname, lname, address, phone, email, password) VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email,$this->_password);");
 
-        }
-
+        $this->_id = $this->db->insert_id;
+        $this->db->commit();
         return $this;
     }
 
