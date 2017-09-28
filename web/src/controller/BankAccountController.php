@@ -9,8 +9,14 @@
 namespace agilman\a2\controller;
 
 
+use agilman\a2\view\View;
+
 class BankAccountController extends Controller
 {
+    public function createAction() {
+        $view = new View("bankAccountCreate");
+        echo $view->render();
+    }
     public function indexAction() {
 
     }

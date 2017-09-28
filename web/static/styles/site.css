@@ -2,6 +2,9 @@
 body {
     background-color: lightgrey;}
 form{
-    .submissionfield width: 150px; height: 390px; padding: 5px;
+    width: 150px; height: 390px; padding: 5px;
 
+}
+.createaccounttext {
+    width: 300px;
 }
