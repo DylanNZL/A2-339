@@ -1,0 +1,28 @@
+<?php include "header.phtml" ?>
+    <!---------- Body starts --------------->
+    <h1>A Legit Bank</h1>
+    <br>
+    <table>
+        <thead>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Balance</th>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($bankAccounts as $account) {
+                    echo"<tr>";
+                    echo "<td>". $account->getID() ."</td>";
+                    echo "<td>". $account->getName() ."</td>";
+                    echo "<td>". $account->getBalance() ."</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </tbody>
+    </table>
+    <p><a href="">Create new account</a></p>
+    <br>
+<?php echo "<p>$error</p>"; ?>
+    <a href="/User/create">Sign Up</a>
+    <!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>

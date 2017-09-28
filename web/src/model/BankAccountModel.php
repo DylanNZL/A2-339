@@ -16,7 +16,7 @@ namespace agilman\a2\model;
  *
  * @package agilman\a2\model
  */
-class BankAccountModel extends model
+class BankAccountModel extends Model
 {
     /**
      * @var integer Account ID
@@ -34,12 +34,18 @@ class BankAccountModel extends model
      * @var integer Owner ID
      * Contains the ID of the owner User
      */
-    private $_ownerID;
+    private $_userID;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * @return int
      */
-    public function getAccountID()
+    public function getID()
     {
         return $this->_id;
     }
@@ -71,19 +77,19 @@ class BankAccountModel extends model
     /**
      * @return int
      */
-    public function getOwnerID()
+    public function getUserID()
     {
-        return $this->_ownerID;
+        return $this->_userID;
     }
 
     /**
      * @param int Bank Account ID
-     * @param int Owner ID
+     * @param int User ID
      *
      * @return $this BankAccountModel
      */
-    public function load($id, $ownerID) {
-        if (!$result = $this->db->query("SELECT * FROM `bank_account` WHERE `account_id` = $id AND `owner_id` = $ownerID")) {
+    public function load($id) {
+        if (!$result = $this->db->query("SELECT * FROM `bank_account` WHERE `id` = $id")) {
             // throw new ...
         }
 
@@ -91,24 +97,24 @@ class BankAccountModel extends model
         $this->_name = $result['name'];
         $this->_balance = $result['balance'];
         $this->_id = $id;
-        $this->_ownerID = $ownerID;
+        $this->_ownerID = $result['owner_id'];
 
         return $this;
     }
 
     /**
      * Saves account information to the database
-     * @param int Owner ID
+     * @param int User ID
      *
      * @return $this BankAccountModel
      */
-    public function save($ownerID)
+    public function save()
     {
         $name = $this->_name??"NULL";
         $balance = $this->_balance??0;
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL,'$name', $balance, $ownerID);")) {
+            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL,'$name', $balance, $this->userID);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;

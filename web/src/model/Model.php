@@ -117,7 +117,7 @@ class Model
                                               `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
                                               `name` VARCHAR(256) DEFAULT NULL,
                                               `balance` FLOAT(10, 2) NOT NULL,
-                                              `owner_id` INT(8) NOT NULL,
+                                              `user_id` INT(8) NOT NULL,
                                               PRIMARY KEY (`id`) );"
             );
 
