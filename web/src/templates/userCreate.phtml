@@ -2,18 +2,17 @@
     <!---------- Body starts --------------->
     <h1>Please Sign up</h1>
     <br>
-    <form method="post">
-        First Name: <input type="text" name="fname" placeholder="John"><br>
-        Last Name: <input type="text" name="lname" placeholder="Smith"><br>
-        Phone Number <input type="tel" name="phone" placeholder="1-888-888-8888"><br>
-        Address: <input type="text" name="address" placeholder="123 Massey st, Massey, Auckland, 0614"><br>
+    <form action="/User/CreateAccount" method="post">
+        First Name: <input class="createaccounttext" type="text" name="fname" placeholder="John"><br>
+        Last Name: <input class="createaccounttext" type="text" name="lname" placeholder="Smith"><br>
+        Phone Number <input class="createaccounttext" type="tel" name="phone" placeholder="1-888-888-8888"><br>
+        Address: <input class="createaccounttext" type="text" name="address" placeholder="123 Massey st, Massey, Auckland, 0614"><br>
         <br>
-        Email: <input type="email" name="email" placeholder="example@email.com"><br>
-        Password: <input type="password" name="password" placeholder="******"><br>
-        Confirm Password: <input type="password" name="password" placeholder="******"><br>
+        Email: <input class="createaccounttext" type="email" name="email" placeholder="example@email.com"><br>
+        Password: <input class="createaccounttext" type="password" name="password" placeholder="******"><br>
+        Confirm Password: <input class="createaccounttext" type="password" name="password" placeholder="******"><br>
         <input type="submit">
     </form>
     <br>
-    <a href="/">Submit</a>
     <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>
