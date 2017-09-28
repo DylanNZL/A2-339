@@ -45,6 +45,7 @@ class MyUserController extends Controller
 
         // Set cookie
         $_SESSION['MyUserId'] = $myUser->getId();
+        $_SESSION['MyUserFName'] = $myUser->getFName();
         BankAccountController::indexAction();
     }
 
