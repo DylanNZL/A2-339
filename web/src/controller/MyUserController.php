@@ -54,9 +54,9 @@ class MyUserController extends Controller
 
     }
 
-    public function createAccountAction() {
-        foreach ($_POST as $key=>$value)
-        {
+    public function createAccountAction()
+    {
+        foreach ($_POST as $key => $value) {
             if ($value == null) {
                 $view = new View('myUserCreate');
                 $view->addData("error", "Pease fill out all fields");
@@ -76,7 +76,5 @@ class MyUserController extends Controller
         $view = new View('myUserIndex');
         echo $view->render();
         return;
-        echo count($_POST);
-        echo print_r($_POST);
     }
 }
