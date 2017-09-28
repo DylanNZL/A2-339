@@ -10,6 +10,7 @@ namespace agilman\a2\controller;
 
 
 use agilman\a2\model\BankAccountCollectionModel;
+use agilman\a2\model\BankAccountModel;
 use agilman\a2\view\View;
 
 class BankAccountController extends Controller
@@ -37,5 +38,13 @@ class BankAccountController extends Controller
         $view = new View('bankAccountIndex');
         $view->addData("bankAccounts", $bankAccounts);
         echo $view->render();
+
+    }
+    public function createBankAccountAction() {
+        $bankAccount = new BankAccountModel();
+        $bankAccount->setName("test");
+        $bankAccount->save();
+
+
     }
 }
