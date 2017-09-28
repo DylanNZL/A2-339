@@ -23,6 +23,7 @@ class BankAccountController extends Controller
         // TODO: Dynamic
         $bankAccountCollection = new BankAccountCollectionModel(1);
         $bankAccounts = $bankAccountCollection->getAccounts();
+
         $view = new View('bankAccountIndex');
         $view->addData("bankAccounts", $bankAccounts);
         echo $view->render();

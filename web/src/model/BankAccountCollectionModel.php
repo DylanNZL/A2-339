@@ -18,7 +18,7 @@ class BankAccountCollectionModel extends Model
     function __construct($user)
     {
         parent::__construct();
-        if (!$result = $this->db->query("SELECT `id` FROM `bank_account` WHERE `user_id` = $user")) {
+        if (!$result = $this->db->query("SELECT `id` FROM `bank_account` WHERE `owner_id` = $user")) {
             // throw new ...
         } //else {
             $this->_accountIDs = array_column($result->fetch_all(), 0);
