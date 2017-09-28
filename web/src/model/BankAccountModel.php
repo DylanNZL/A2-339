@@ -40,6 +40,13 @@ class BankAccountModel extends Model
     public function __construct()
     {
         parent::__construct();
+        $this->_balance = 0;
+    }
+    public static function __constructwithvar($name, $id) {
+        $newaccount = new BankAccountModel();
+        $newaccount -> _name = $name;
+        $newaccount -> _id = $id;
+        return $newaccount;
     }
 
     /**
