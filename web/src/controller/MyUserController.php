@@ -46,16 +46,37 @@ class MyUserController extends Controller
 
         error_log("WE GOT THERE!");
         BankAccountController::indexAction();
-
-//        echo "E: $email P: $password _Post:".print_r($_POST);
     }
 
     public function createAction() {
         $view = new View('myUserCreate');
         echo $view->render();
+
     }
 
     public function createAccountAction() {
-
+        foreach ($_POST as $key=>$value)
+        {
+            if ($value == null) {
+                $view = new View('myUserCreate');
+                $view->addData("error", "Pease fill out all fields");
+                echo $view->render();
+                return;
+            }
+        }
+        if ($_POST["password"] != $_POST["confirmpassword"]) {
+            $view = new View('myUserCreate');
+            $view->addData("error", "Passwords do not match");
+            echo $view->render();
+            return;
+        }
+        $tempuser = MyUserModel::__constructwithvar($_POST["fname"], $_POST["lname"], $_POST["phone"], $_POST["address"], $_POST["email"], $_POST["password"]);
+        error_log($tempuser->getAddress());
+        $tempuser->save();
+        $view = new View('myUserIndex');
+        echo $view->render();
+        return;
+        echo count($_POST);
+        echo print_r($_POST);
     }
 }

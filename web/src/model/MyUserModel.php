@@ -9,8 +9,23 @@
 namespace agilman\a2\model;
 
 
-class MyUserModel extends model
+class MyUserModel extends Model
 {
+    function __construct()
+    {
+        parent::__construct();
+
+    }
+    public static function __constructwithvar($fname, $lname, $phone, $address, $email, $password) {
+        $myusermodel = new MyUserModel();
+        $myusermodel->_fname = $fname;
+        $myusermodel->_lname = $lname;
+        $myusermodel->_phone = $phone;
+        $myusermodel->_address = $address;
+        $myusermodel->_email = $email;
+        $myusermodel->_password = $password;
+        return $myusermodel;
+    }
 
     /**
      * @var integer User ID
@@ -141,7 +156,7 @@ class MyUserModel extends model
             $this->_fname = $result['fname'];
             $this->_lname = $result['lname'];
             $this->_address = $result['address'];
-            $this->_phone = $result['address'];
+            $this->_phone = $result['phone'];
             $this->_password = $result["password"];
             $this->_email = $email;
         }
@@ -159,7 +174,7 @@ class MyUserModel extends model
     {
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `my_user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email);")) {
+            if (!$result = $this->db->query("INSERT INTO `my_user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email,$this->_password);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;
