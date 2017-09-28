@@ -86,7 +86,7 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/BankAccount/', array(
-            '_controller' => 'agilman\a2\controller\BankAccount::indexAction',
+            '_controller' => 'agilman\a2\controller\BankAccountController::indexAction',
             'methods' => 'GET',
             'name' => 'actionIndex'
         )
@@ -96,7 +96,7 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/BankAccount/Create', array(
-            '_controller' => 'agilman\a2\controller\BankAccount::createAction',
+            '_controller' => 'agilman\a2\controller\BankAccountController::createAction',
             'methods' => 'GET',
             'name' => 'bankAccountCreate'
         )
@@ -106,7 +106,37 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/BankAccount/:id', array(
-            '_controller' => 'agilman\a2\controller\BankAccount::singleAction',
+            '_controller' => 'agilman\a2\controller\BankAccountController::singleAction',
+            'methods' => 'GET',
+            'name' => 'bankAccountSingle'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/BankAcount/Edit', array(
+            '_controller' => 'agilman\a2\controller\BankAccountController::editAction',
+            'methods' => 'GET',
+            'name' => 'actionIndex'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/Transaction/create', array(
+            '_controller' => 'agilman\a2\controller\TransactionController::createAction',
+            'methods' => 'GET',
+            'name' => 'bankAccountCreate'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/:id', array(
+            '_controller' => 'agilman\a2\controller\BankAccountController::singleAction',
             'methods' => 'GET',
             'name' => 'bankAccountSingle'
         )

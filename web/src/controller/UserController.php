@@ -23,6 +23,7 @@ class UserController extends Controller
     }
 
     public function createAccountAction() {
-
+        $view = new View('userCreate');
+        echo $view->render();
     }
 }
