@@ -12,7 +12,7 @@ namespace agilman\a2\model;
 /**
  * Class BankAccountModel
  *
- * NOTE: Owner ID refers to the UserModel that "owns" the account
+ * NOTE: Owner ID refers to the MyUserModel that "owns" the account
  *
  * @package agilman\a2\model
  */

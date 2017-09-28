@@ -2,12 +2,13 @@
     <!---------- Body starts --------------->
     <h1>A Legit Bank</h1>
     <br>
-    <form method="post">
+    <form action="/MyUser/Login" method="post" enctype="multipart/form-data">
         E-mail: <input type="email" name="email"><br>
-        Password: <input type="password" pw="password"><br>
+        Password: <input type="password" name="pw"><br>
         <input type="submit">
     </form>
     <br>
+    <?php echo "<p>$error</p>"; ?>
     <a href="/User/create">Sign Up</a>
     <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>

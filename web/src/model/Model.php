@@ -71,14 +71,14 @@ class Model
         }
 
             //----------------------------------------------------------------------------
-            //-------------------------------- USER TABLE --------------------------------
+            //------------------------------ MY USER TABLE -------------------------------
             //----------------------------------------------------------------------------
 
-        $result = $this->db->query("SHOW TABLES LIKE 'user';");
+        $result = $this->db->query("SHOW TABLES LIKE 'my_user';");
         if ($result->num_rows == 0) {
 
             $result = $this->db->query(
-                "CREATE TABLE `user` (
+                "CREATE TABLE `my_user` (
                                           `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
                                           `fname` VARCHAR(256) NOT NULL,
                                           `lname` VARCHAR(256) NOT NULL,
@@ -95,7 +95,7 @@ class Model
             }
 
             if (!$this->db->query(
-                "INSERT INTO `user` VALUES (NULL,'Dylan', 'Cross', '12 Real Street', '0123456789', 'dylan@email.com', '123'), 
+                "INSERT INTO `my_user` VALUES (NULL,'Dylan', 'Cross', '12 Real Street', '0123456789', 'dylan@email.com', '123'), 
                     (NULL,'Tom', 'Sloman', '34 Fake Ave', '123456789', 'tom@email.com', '456'),
                     (NULL,'Jordan', 'Felix', '34 Pretend Road', '234567890', 'jordan@email.com', '789');"
 

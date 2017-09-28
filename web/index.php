@@ -66,19 +66,39 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/', array(
-            '_controller' => 'agilman\a2\controller\UserController::indexAction',
+            '_controller' => 'agilman\a2\controller\MyUserController::indexAction',
             'methods' => 'GET',
-            'name' => 'userIndex'
+            'name' => 'myUserIndex'
         )
     )
 );
 
 $collection->attachRoute(
     new Route(
-        '/User/Create', array(
-            '_controller' => 'agilman\a2\controller\UserController::createAction',
+        '/MyUser/Create', array(
+            '_controller' => 'agilman\a2\controller\MyUserController::createAction',
             'methods' => 'GET',
-            'name' => 'userCreate'
+            'name' => 'myUserCreate'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/MyUser/Login', array(
+            '_controller' => 'agilman\a2\controller\MyUserController::loginAction',
+            'methods' => 'POST',
+            'name' => 'myUserIndex'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/MyUser/Create', array(
+            '_controller' => 'agilman\a2\controller\MyUserController::createAction',
+            'methods' => 'GET',
+            'name' => 'myUserCreate'
         )
     )
 );
@@ -92,6 +112,7 @@ $collection->attachRoute(
         )
     )
 );
+
 
 $collection->attachRoute(
     new Route(

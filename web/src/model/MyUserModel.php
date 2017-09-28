@@ -9,7 +9,7 @@
 namespace agilman\a2\model;
 
 
-class UserModel extends model
+class MyUserModel extends model
 {
 
     /**
@@ -130,20 +130,22 @@ class UserModel extends model
     /**
      * @param string email
      *
-     * @return $this UserModel
+     * @return $this MyUserModel
      */
     public function load($email) {
-        if (!$result = $this->db->query("SELECT * FROM `user` WHERE `email` = $email")) {
+        if (!$result = $this->db->query("SELECT * FROM `my_user` WHERE `email` = \"$email\"")) {
             // throw new ...
+        } else {
+            $result = $result->fetch_assoc();
+            $this->_id = $result['id'];
+            $this->_fname = $result['fname'];
+            $this->_lname = $result['lname'];
+            $this->_address = $result['address'];
+            $this->_phone = $result['address'];
+            $this->_password = $result["password"];
+            $this->_email = $email;
         }
 
-        $result = $result->fetch_assoc();
-        $this->_id = $result['id'];
-        $this->_fname = $result['fname'];
-        $this->_lname = $result['lname'];
-        $this->_address = $result['address'];
-        $this->_phone = $result['address'];
-        $this->_email = $email;
 
         return $this;
     }
@@ -151,19 +153,19 @@ class UserModel extends model
     /**
      * Saves user information to the database
      *
-     * @return $this UserModel
+     * @return $this MyUserModel
      */
     public function save()
     {
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email);")) {
+            if (!$result = $this->db->query("INSERT INTO `my_user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;
         } else {
             // saving existing account - perform UPDATE
-            if (!$result = $this->db->query("UPDATE `user` SET `address` = $this->_address, `phone` = $this->_phone, `email` =$this->_email WHERE `id` = $this->_id;")) {
+            if (!$result = $this->db->query("UPDATE `my_user` SET `address` = $this->_address, `phone` = $this->_phone, `email` =$this->_email WHERE `id` = $this->_id;")) {
                 // throw new ...
             }
 

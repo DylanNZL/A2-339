@@ -11,5 +11,7 @@ namespace agilman\a2\controller;
 
 class BankAccountController extends Controller
 {
+    public function indexAction() {
 
+    }
 }
