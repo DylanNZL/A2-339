@@ -21,7 +21,7 @@ class BankAccountModel extends model
     /**
      * @var integer Account ID
      */
-    private $_accountID;
+    private $_id;
     /**
      * @var string Account Name
      */
@@ -32,7 +32,7 @@ class BankAccountModel extends model
     private $_balance;
     /**
      * @var integer Owner ID
-     * Contains the ID of the owner account
+     * Contains the ID of the owner User
      */
     private $_ownerID;
 
@@ -41,7 +41,7 @@ class BankAccountModel extends model
      */
     public function getAccountID()
     {
-        return $this->_accountID;
+        return $this->_id;
     }
 
     /**
@@ -77,20 +77,20 @@ class BankAccountModel extends model
     }
 
     /**
-     * @param int Account ID
+     * @param int Bank Account ID
      * @param int Owner ID
      *
      * @return $this BankAccountModel
      */
-    public function load($accountID, $ownerID) {
-        if (!$result = $this->db->query("SELECT * FROM `bank_account` WHERE `account_id` = $accountID AND `owner_id` = $ownerID")) {
+    public function load($id, $ownerID) {
+        if (!$result = $this->db->query("SELECT * FROM `bank_account` WHERE `account_id` = $id AND `owner_id` = $ownerID")) {
             // throw new ...
         }
 
         $result = $result->fetch_assoc();
         $this->_name = $result['name'];
         $this->_balance = $result['balance'];
-        $this->_accountID = $accountID;
+        $this->_id = $id;
         $this->_ownerID = $ownerID;
 
         return $this;

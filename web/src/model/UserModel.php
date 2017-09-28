@@ -43,6 +43,11 @@ class UserModel extends model
     private $_email;
 
     /**
+     * @var string password
+     */
+    private $_password;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -115,6 +120,14 @@ class UserModel extends model
     }
 
     /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->_password;
+    }
+
+    /**
      * @param string email
      *
      * @return $this UserModel
@@ -144,7 +157,7 @@ class UserModel extends model
     {
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `user` VALUES (NULL,$this->_id,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email);")) {
+            if (!$result = $this->db->query("INSERT INTO `user` VALUES (NULL,$this->_fname,$this->_lname,$this->_address,$this->_phone,$this->_email);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;

@@ -25,7 +25,7 @@ class Model
             Model::DB_HOST,
             Model::DB_USER,
             Model::DB_PASS
-            //            Model::DB_NAME
+        //            Model::DB_NAME
         );
 
         if (!$this->db) {
@@ -50,37 +50,123 @@ class Model
             // table doesn't exist
             // create it and populate with sample data
 
-            // Sample
             $result = $this->db->query(
-                                "CREATE TABLE `account` (
-                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(256) DEFAULT NULL,
+                "CREATE TABLE `account` (
+                                          `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                          `name` VARCHAR(256) DEFAULT NULL,
                                           PRIMARY KEY (`id`) );"
             );
 
             if (!$result) {
                 // handle appropriately
-                error_log("Failed creating table account",0);
+                error_log("Failed creating table account", 0);
             }
 
-            if(!$this->db->query(
+            if (!$this->db->query(
                 "INSERT INTO `account` VALUES (NULL,'Bob'), (NULL,'Mary');"
             )) {
                 // handle appropriately
-                error_log("Failed creating sample data!",0);
+                error_log("Failed creating sample data!", 0);
             }
+        }
 
-            // Actual:
+            //----------------------------------------------------------------------------
+            //-------------------------------- USER TABLE --------------------------------
+            //----------------------------------------------------------------------------
+
+        $result = $this->db->query("SHOW TABLES LIKE 'user';");
+        if ($result->num_rows == 0) {
+
             $result = $this->db->query(
-                "CREATE TABLE `BankAccountModel` (
-                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(256) DEFAULT NULL,
+                "CREATE TABLE `user` (
+                                          `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                          `fname` VARCHAR(256) NOT NULL,
+                                          `lname` VARCHAR(256) NOT NULL,
+                                          `address` VARCHAR(256) NOT NULL,
+                                          `phone` VARCHAR(256) NOT NULL,
+                                          `email` VARCHAR(256) NOT NULL,
+                                          `password` VARCHAR(256) NOT NULL,
                                           PRIMARY KEY (`id`) );"
             );
 
+            if (!$result) {
+                // handle appropriately
+                error_log("Failed creating table account", 0);
+            }
+
+            if (!$this->db->query(
+                "INSERT INTO `user` VALUES (NULL,'Dylan', 'Cross', '12 Real Street', '0123456789', 'dylan@email.com', '123'), 
+                    (NULL,'Tom', 'Sloman', '34 Fake Ave', '123456789', 'tom@email.com', '456'),
+                    (NULL,'Jordan', 'Felix', '34 Pretend Road', '234567890', 'jordan@email.com', '789');"
 
 
+            )) {
+                // handle appropriately
+                error_log("Failed creating sample data!", 0);
+            }
         }
-        //----------------------------------------------------------------------------
+
+            //----------------------------------------------------------------------------
+            //------------------------- BANK ACCOUNT TABLE -------------------------------
+            //----------------------------------------------------------------------------
+
+        $result = $this->db->query("SHOW TABLES LIKE 'bank_account';");
+        if ($result->num_rows == 0) {
+            $result = $this->db->query(
+                "CREATE TABLE `bank_account` (
+                                              `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                              `name` VARCHAR(256) DEFAULT NULL,
+                                              `balance` FLOAT(10, 2) NOT NULL,
+                                              `owner_id` INT(8) NOT NULL,
+                                              PRIMARY KEY (`id`) );"
+            );
+
+            if (!$result) {
+                // handle appropriately
+                error_log("Failed creating table account", 0);
+            }
+
+            if (!$this->db->query(
+                "INSERT INTO `bank_account` VALUES (NULL, 'Cheque', 65.2, 1), 
+                        (NULL, 'Credit', 65.2, 1),
+                        (NULL, 'Cheque', 98, 2);"
+            )) {
+                // handle appropriately
+                error_log("Failed creating sample data!", 0);
+            }
+        }
+
+            //----------------------------------------------------------------------------
+            //-------------------------- TRANSACTION TABLE -------------------------------
+            //----------------------------------------------------------------------------
+
+        $result = $this->db->query("SHOW TABLES LIKE 'transaction';");
+        if ($result->num_rows == 0) {
+            $result = $this->db->query(
+                "CREATE TABLE `transaction` (
+                                              `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                              `account_id` INT(8) NOT NULL,
+                                              `amount` FLOAT(10,2) NOT NULL,
+                                              `date` DATETIME NOT NULL,
+                                              `type` VARCHAR(256) NOT NULL,
+                                              PRIMARY KEY (`id`) );"
+            );
+
+            if (!$result) {
+                // handle appropriately
+                error_log("Failed creating table account", 0);
+            }
+
+            // date time 'YYYY-MM-DD HH:MM:SS'
+            if (!$this->db->query(
+                "INSERT INTO `transaction` VALUES (NULL, 1, 25, '2017-09-01 10:00:00', 'D'), 
+                        (NULL, 1, 13, '2017-09-01 10:00:00', 'W'),
+                        (NULL, 1, 45.2, '2017-09-01 10:00:00', 'D');"
+            )) {
+                // handle appropriately
+                error_log("Failed creating sample data!", 0);
+            }
+        }
+
     }
 }
