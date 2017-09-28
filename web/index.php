@@ -78,7 +78,37 @@ $collection->attachRoute(
         '/User/Create', array(
             '_controller' => 'agilman\a2\controller\UserController::createAction',
             'methods' => 'GET',
-            'name' => 'userIndex'
+            'name' => 'userCreate'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/', array(
+            '_controller' => 'agilman\a2\controller\BankAccount::indexAction',
+            'methods' => 'GET',
+            'name' => 'actionIndex'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/Create', array(
+            '_controller' => 'agilman\a2\controller\BankAccount::createAction',
+            'methods' => 'GET',
+            'name' => 'bankAccountCreate'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/:id', array(
+            '_controller' => 'agilman\a2\controller\BankAccount::singleAction',
+            'methods' => 'GET',
+            'name' => 'bankAccountSingle'
         )
     )
 );
