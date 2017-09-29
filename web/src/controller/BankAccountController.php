@@ -21,6 +21,8 @@ class BankAccountController extends Controller
     }
 
     public function indexAction() {
+        session_name('UserDetails');
+        session_start();
         error_log($_SESSION['MyUserId']);
         // Check user has logged in
         if (!isset($_SESSION['MyUserId']) || $_SESSION['MyUserId'] == null) {
@@ -41,14 +43,31 @@ class BankAccountController extends Controller
     }
 
     public function createBankAccountAction() {
-
         session_name('UserDetails');
         session_start();
         $bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], $_SESSION['MyUserId']);
-        //$bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], 1);
         $bankAccount->save();
         $this->indexAction();
         return;
+    }
 
+    public function singleAction($id) {
+        session_name('UserDetails');
+        session_start();
+        $bankAccount = new BankAccountModel();
+        $bankAccount->load($id);
+        // Check we found the account
+        if ($bankAccount->getBalance() == null) {
+            $this->indexAction();
+            return;
+        }
+        // Check the user owns the account
+        if ($bankAccount->getUserID() != $_SESSION['MyUserId']) {
+            $this->indexAction();
+            return;
+        }
+        // Render the transactions page of this account
+        $_SESSION['currentAccount'] = $bankAccount->getID();
+        TransactionController::indexAction();
     }
 }

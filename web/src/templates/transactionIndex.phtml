@@ -13,13 +13,15 @@ include "session.phtml";
         <th>Type</th>
         <th>Date</th>
     </thead>
-        <?php foreach ($transactions as $trans) {?>
+    <tbody>
+        <?php foreach ($transactions as $transaction) {?>
             <tr>
-                <td><?php echo $trans->getAmount() ?></td>
-                <td><?php echo $trans->getType() ?></td>
-                <td><?php echo $trans->getDate() ?></td>
+                <td><?php echo $transaction->getAmount() ?></td>
+                <td><?php echo $transaction->getType() ?></td>
+                <td><?php echo $transaction->getDate() ?></td>
             </tr>
         <?php } ?>
+    </tbody>
 </table>
 <br>
 <h3>Add transaction:</h3>
