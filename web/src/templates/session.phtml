@@ -1,0 +1,15 @@
+<?php
+    session_start();
+
+    if (isset($_GET["MyUserId"])) {
+        $_SESSION["MyUserId"] = $_GET["MyUserId"];
+    } else if (isset($_POST["MyUserId"])) {
+        $_SESSION["MyUserId"] = $_POST["MyUserId"];
+    }
+
+    if (isset($_GET["MyUserName"])) {
+        $_SESSION["MyUserName"] = $_GET["MyUserName"];
+    } else if (isset($_POST["MyUserName"])) {
+        $_SESSION["MyUserName"] = $_POST["MyUserName"];
+    }
+?>

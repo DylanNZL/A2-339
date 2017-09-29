@@ -121,7 +121,7 @@ class BankAccountModel extends Model
         $balance = $this->_balance??0;
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL,'$name', $balance, $this->userID);")) {
+            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL, '$name', $balance, $this->userID);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;

@@ -46,7 +46,5 @@ class BankAccountController extends Controller
         $bankAccount->
         $bankAccount->save();
         $this->indexAction();
-
-
     }
 }
