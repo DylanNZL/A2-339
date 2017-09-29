@@ -2,3 +2,33 @@
 include "header.phtml";
 include "session.phtml";
 ?>
+
+<h3><?php echo $account->getName() . " : $" . $account->getBalance() ?></h3>
+<p><a href="/BankAccount/EditName/"<?php $account->getId()?>>Edit Name</a></p>
+<br>
+<h3>Transactions for <?php echo $account->getName() ?></h3>
+<table>
+    <thead>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Date</th>
+    </thead>
+        <?php foreach ($transactions as $trans) {?>
+            <tr>
+                <td><?php echo $trans->getAmount() ?></td>
+                <td><?php echo $trans->getType() ?></td>
+                <td><?php echo $trans->getDate() ?></td>
+            </tr>
+        <?php } ?>
+</table>
+<br>
+<h3>Add transaction:</h3>
+<form action="/Transaction/Create" method="POST">
+    Amount: $<input type="number" name="amount" placeholder="100.00"><br>
+    Type:<br>
+    &nbsp;<input type="radio" name="type" value="Deposit" checked> Deposit<br>
+    &nbsp;<input type="radio" name="type" value="Withdrawal"> Withdrawal<br>
+    <input type="submit">
+</form>
+
+<?php include "footer.phtml" ?>

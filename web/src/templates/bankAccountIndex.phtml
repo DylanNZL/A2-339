@@ -12,18 +12,18 @@ include "session.phtml";
             <th>Balance</th>
         </thead>
         <tbody>
-            <?php
-                foreach ($bankAccounts as $account) {
-                    echo"<tr>";
-                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getID() ."</a></td>";
-                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getName() ."</a></td>";
-                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getBalance() ."</a></td>";
-                    echo "</tr>";
-                }
-            ?>
+            <?php foreach ($bankAccounts as $account) {
+                $link = '/BankAccount/'. $account->getId();
+                ?>
+                <tr>
+                    <td><a href=<?php echo $link . ">".$account->getId() ?> </a></td>
+                    <td><a href=<?php echo $link . ">".$account->getName() ?> </a></td>
+                    <td><a href=<?php echo $link . ">".$account->getBalance()?> </a></td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
-    <p><a href="/bankaccount/create">Create new account</a></p>
+    <p><a href="/BankAccount/create">Create new account</a></p>
     <br>
 <?php echo "<p>$error</p>"; ?>
     <!---------- Body ends -------------------->
