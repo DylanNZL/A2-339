@@ -41,12 +41,11 @@ class BankAccountController extends Controller
     }
 
     public function createBankAccountAction() {
-        $bankAccount = new BankAccountModel();
-        $bankAccount->setName("test");
-        $bankAccount->
+//        $bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], $_SESSION['MyUserId']);
+        $bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], 1);
         $bankAccount->save();
         $this->indexAction();
-
+        return;
 
     }
 }

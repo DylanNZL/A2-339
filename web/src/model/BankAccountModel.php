@@ -40,13 +40,14 @@ class BankAccountModel extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->_balance = 0;
     }
+
     public static function __constructwithvar($name, $id) {
-        $newaccount = new BankAccountModel();
-        $newaccount -> _name = $name;
-        $newaccount -> _id = $id;
-        return $newaccount;
+        $newAccount = new BankAccountModel();
+        $newAccount->_balance = 0;
+        $newAccount->_name = $name;
+        $newAccount->_userID = $id;
+        return $newAccount;
     }
 
     /**
@@ -104,7 +105,7 @@ class BankAccountModel extends Model
         $this->_name = $result['name'];
         $this->_balance = $result['balance'];
         $this->_id = $id;
-        $this->_ownerID = $result['owner_id'];
+        $this->_userID = $result['user_id'];
 
         return $this;
     }
@@ -117,17 +118,18 @@ class BankAccountModel extends Model
      */
     public function save()
     {
-        $name = $this->_name??"NULL";
-        $balance = $this->_balance??0;
+        //$name = $this->_name??"NULL";
+        //$balance = $this->_balance??0;
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL,'$name', $balance, $this->userID);")) {
+
+            if (!$result = $this->db->query("INSERT INTO `bank_account` VALUES (NULL,\"$this->_name\", \"$this->_balance\", $this->_userID);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;
         } else {
             // saving existing account - perform UPDATE
-            if (!$result = $this->db->query("UPDATE `bank_account` SET `name` = '$name', `balance` = $balance WHERE `id` = $this->_id;")) {
+            if (!$result = $this->db->query("UPDATE `bank_account` SET `name` = \"$this->_name\", `balance` = \"$this->_balance\" WHERE `id` = \"$this->_id\";")) {
                 // throw new ...
             }
 
