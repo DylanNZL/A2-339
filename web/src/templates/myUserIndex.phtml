@@ -1,6 +1,7 @@
 <?php
 include "header.phtml";
 include "session.phtml";
+session_start();
 ?>
     <!---------- Body starts --------------->
     <h1>A Legit Bank</h1>
@@ -11,7 +12,9 @@ include "session.phtml";
         <input type="submit">
     </form>
     <br>
-    <?php echo "<p>$error</p>"; ?>
+    <?php echo "<p>$error</p>";
+    error_log("LOOK HERE".$_POST['id']);
+    //$_SESSION['UserId'] = $_POST['id']?>
     <a href="/MyUser/Create">Sign Up</a>
     <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>
