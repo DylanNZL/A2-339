@@ -1,4 +1,7 @@
-<?php include "header.phtml" ?>
+<?php
+include "header.phtml";
+include "session.phtml";
+?>
     <!---------- Body starts --------------->
     <h1>A Legit Bank</h1>
     <br>
@@ -12,9 +15,9 @@
             <?php
                 foreach ($bankAccounts as $account) {
                     echo"<tr>";
-                    echo "<td>". $account->getID() ."</td>";
-                    echo "<td>". $account->getName() ."</td>";
-                    echo "<td>". $account->getBalance() ."</td>";
+                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getID() ."</a></td>";
+                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getName() ."</a></td>";
+                    echo "<td><a href='/BankAccount/Single?id='" .$account->getID() . ">". $account->getBalance() ."</a></td>";
                     echo "</tr>";
                 }
             ?>
@@ -23,6 +26,5 @@
     <p><a href="/bankaccount/create">Create new account</a></p>
     <br>
 <?php echo "<p>$error</p>"; ?>
-    <a href="/MyUser/create">Sign Up</a>
     <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>
