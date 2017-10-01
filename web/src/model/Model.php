@@ -1,4 +1,10 @@
 <?php
+/**
+ * Dylan Cross ID 15219491
+ * Jordan Felix ID 15152699
+ * Thomas Sloman ID 15078758
+ */
+
 namespace agilman\a2\model;
 
 use mysqli;
