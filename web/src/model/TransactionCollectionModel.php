@@ -31,10 +31,10 @@ class TransactionCollectionModel extends Model
      */
     public function getTransactions()
     {
-        error_log("number" . $this->_numTransactions);
         foreach ($this->_transactionIDs as $id) {
             // Use a generator to save on memory/resources
             // load accounts from DB one at a time only when required
+            error_log($id);
             yield (new TransactionModel())->load($id);
         }
     }

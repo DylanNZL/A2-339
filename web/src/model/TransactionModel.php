@@ -82,17 +82,17 @@ class TransactionModel extends Model
      * @return $this TransactionModel
      */
     public function load($id) {
-        error_log("loaded ".$id);
         if (!$result = $this->db->query("SELECT * FROM `transaction` WHERE `id` = $id")) {
             // throw new ...
         }
-        error_log($result);
+
         $result = $result->fetch_assoc();
         $this->_id = $id;
         $this->_accountID = $result['account_id'];
         $this->_amount = $result['amount'];
         $this->_date = $result['date'];
         $this->_type = $result['type'];
+
         return $this;
     }
 

@@ -70,4 +70,8 @@ class BankAccountController extends Controller
         $_SESSION['currentAccount'] = $bankAccount->getID();
         TransactionController::indexAction();
     }
+
+    public function editAction($id) {
+
+    }
 }
