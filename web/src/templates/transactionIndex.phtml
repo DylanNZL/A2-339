@@ -3,7 +3,7 @@ include "header.phtml";
 include "session.phtml";
 ?>
 
-<p><a href="/MyUser/Logout">Log Out</a></p>
+<p id="logout"><a href="/MyUser/Logout">Log Out</a></p>
 <h1><?php echo $account->getName() . " : $" . $account->getBalance() ?></h1>
 <p><a href="/BankAccount/EditName/<?php echo $account->getId()?>">Edit Name</a></p>
 <br>

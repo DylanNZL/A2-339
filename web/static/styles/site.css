@@ -1,6 +1,8 @@
 
 body {
-    background-color: lightgrey;}
+    background-color: lightgrey;
+    margin: 2%;
+}
 form{
     width: 150px; height: 390px; padding: 5px;
 
@@ -11,4 +13,8 @@ form{
 
 .error {
     color: red;
+}
+
+#logout {
+    float:right;
 }
