@@ -8,6 +8,7 @@ form{
 .createaccounttext {
     width: 300px;
 }
-#error {
+
+.error {
     color: red;
 }

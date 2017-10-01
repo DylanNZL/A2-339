@@ -17,6 +17,10 @@ include "session.phtml";
         <input type="submit">
     </form>
     <br>
-    <?php echo "<p id='error'>$error</p>" ?>
     <!---------- Body ends -------------------->
-<?php include "footer.phtml" ?>
+<?php
+    if ($error) {
+        echo "<p class='error'>" . $error . "</p>";
+    }
+    include "footer.phtml"
+?>

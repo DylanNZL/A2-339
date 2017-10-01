@@ -14,4 +14,9 @@ include "session.phtml";
     <br>
     <a href="/BankAccount/">Back</a>
     <!---------- Body ends -------------------->
-<?php include "footer.phtml" ?>
+<?php
+    if ($error) {
+        echo "<p class='error'>" . $error . "</p>";
+    }
+    include "footer.phtml"
+?>

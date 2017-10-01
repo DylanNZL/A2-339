@@ -25,6 +25,10 @@ include "session.phtml";
     </table>
     <p><a href="/BankAccount/create">Create new account</a></p>
     <br>
-<?php echo "<p>$error</p>"; ?>
     <!---------- Body ends -------------------->
-<?php include "footer.phtml" ?>
+<?php
+    if ($error) {
+        echo "<p class='error'>" . $error . "</p>";
+    }
+    include "footer.phtml"
+?>
