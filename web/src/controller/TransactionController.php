@@ -38,13 +38,10 @@ class TransactionController extends Controller
 
         $sorter = urldecode(substr($_SERVER["REQUEST_URI"], 12));
         $sorter = explode('?', $sorter);
-        error_log($sorter[1]);
         if ($sorter[1] != null) {
             parse_str($sorter[1], $out);
             $sort = $out['sort'];
             $order = $out['order'];
-            error_log($sort);
-            error_log($order);
             $_SESSION['sort'] = $sort;
             $_SESSION['order'] = $order;
         }
@@ -80,13 +77,10 @@ class TransactionController extends Controller
 
         $sorter = urldecode(substr($_SERVER["REQUEST_URI"], 12));
         $sorter = explode('?', $sorter);
-        error_log($sorter[1]);
         if ($sorter[1] != null) {
             parse_str($sorter[1], $out);
             $sort = $out['sort'];
             $order = $out['order'];
-            error_log($sort);
-            error_log($order);
             $_SESSION['sort'] = $sort;
             $_SESSION['order'] = $order;
         }

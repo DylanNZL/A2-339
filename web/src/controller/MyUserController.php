@@ -29,7 +29,6 @@ class MyUserController extends Controller
         if ($myUser->getId() == null) {
             $view = new View('myUserIndex');
             $view->addData("error", "Invalid Email");
-            //error_log($view->render());
             echo $view->render();
             return;
         }
@@ -37,7 +36,6 @@ class MyUserController extends Controller
         if ($myUser->getPassword() != $password) {
             $view = new View('myUserIndex');
             $view->addData("error", "Invalid Password");
-            //error_log($view->render());
             echo $view->render();
             return;
         }
@@ -80,7 +78,6 @@ class MyUserController extends Controller
 
 
         $tempUser = MyUserModel::__constructwithvar($_POST["fname"], $_POST["lname"], $_POST["phone"], $_POST["address"], $_POST["email"], $_POST["password"]);
-        error_log($tempUser->getAddress());
         if (!$tempUser->checkEmail($_POST["email"])) {
             return $this->createActionWithError("This email is taken");
         }

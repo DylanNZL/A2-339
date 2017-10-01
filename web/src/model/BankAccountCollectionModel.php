@@ -33,7 +33,6 @@ class BankAccountCollectionModel extends Model
      */
     public function getAccounts()
     {
-        error_log("account here");
         foreach ($this->_accountIDs as $id) {
             // Use a generator to save on memory/resources
             // load accounts from DB one at a time only when required

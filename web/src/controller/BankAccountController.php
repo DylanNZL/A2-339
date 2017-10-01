@@ -29,7 +29,6 @@ class BankAccountController extends Controller
     public function indexAction() {
         session_name('UserDetails');
         session_start();
-        error_log($_SESSION['MyUserId']);
         // Check user has logged in
         if (!isset($_SESSION['MyUserId']) || $_SESSION['MyUserId'] == null) {
             $view = new View('myUserIndex');
@@ -51,7 +50,6 @@ class BankAccountController extends Controller
     public function indexActionWithError($error) {
         session_name('UserDetails');
         session_start();
-        error_log($_SESSION['MyUserId']);
         // Check user has logged in
         if (!isset($_SESSION['MyUserId']) || $_SESSION['MyUserId'] == null) {
             $view = new View('myUserIndex');
