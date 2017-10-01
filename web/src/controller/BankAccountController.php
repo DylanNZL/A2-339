@@ -20,6 +20,12 @@ class BankAccountController extends Controller
         echo $view->render();
     }
 
+    public function createActionWithError($error) {
+        $view = new View("bankAccountCreate");
+        $view->addData("error", $error);
+        echo $view->render();
+    }
+
     public function indexAction() {
         session_name('UserDetails');
         session_start();
@@ -68,6 +74,9 @@ class BankAccountController extends Controller
     public function createBankAccountAction() {
         session_name('UserDetails');
         session_start();
+        if ($_POST["bankaccountname"] == null) {
+            return $this->createActionWithError("Enter a name for the account");
+        }
         $bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], $_SESSION['MyUserId']);
         $bankAccount->save();
         $this->indexAction();
