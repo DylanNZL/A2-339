@@ -91,6 +91,19 @@ class BankAccountModel extends Model
     }
 
     /**
+     * @param float $amount
+     * @param string $type
+     */
+    public function transaction($amount, $type) {
+        if ($type == "W") {
+            $this->_balance = $this->_balance - $amount;
+        } else if ($type == "D") {
+            $this->_balance = $this->_balance + $amount;
+        }
+        $this->save();
+    }
+
+    /**
      * @param int Bank Account ID
      * @param int User ID
      *

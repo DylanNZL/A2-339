@@ -27,7 +27,6 @@ class TransactionController extends Controller
 
         $bankAccount = new BankAccountModel();
         $bankAccount->load($_SESSION['currentAccount']);
-        error_log($bankAccount->getID());
 
         $transactions = new TransactionCollectionModel($bankAccount->getID());
         $transactions->getTransactions();
@@ -38,19 +37,50 @@ class TransactionController extends Controller
         echo $view->render();
     }
 
+    private function IndexActionWithError($error) {
+        session_name('UserDetails');
+        session_start();
+
+        if (!isset($_SESSION['currentAccount']) || $_SESSION['currentAccount'] == null) {
+            BankAccountController::indexAction();
+            return;
+        }
+
+        $bankAccount = new BankAccountModel();
+        $bankAccount->load($_SESSION['currentAccount']);
+
+        $transactions = new TransactionCollectionModel($bankAccount->getID());
+        $transactions->getTransactions();
+
+        $view = new View('transactionIndex');
+        $view->addData("account", $bankAccount);
+        $view->addData("transactions", $transactions);
+        $view->addData("error", $error);
+        echo $view->render();
+    }
+
     public function createAction() {
         session_name('UserDetails');
         session_start();
 
-        if (!isset($_POST['amount']) || !isset($_POST['type'])) {
-            return $this->indexAction();
+        if ($_POST['amount'] == null || $_POST['type'] == null) {
+            return $this->indexActionWithError("Make sure to enter values into your transaction");
         }
 
         $amount = $_POST['amount'];
         $type = substr($_POST['type'], 0,1);
+        $accountID = $_SESSION['currentAccount'];
 
-        $transaction = TransactionModel::__constructFromVars($_SESSION['currentAccount'], $amount, $type);
+        $account = new BankAccountModel();
+        $account->load($accountID);
 
+        if ($type == "W" && ($account->getBalance() - $amount) < 0) {
+            return $this->indexActionWithError("You can't withdraw that much");
+        }
+
+        $account->transaction($amount, $type);
+
+        $transaction = TransactionModel::__constructFromVars($accountID, $amount, $type);
         $transaction->save();
 
         $this->indexAction();
