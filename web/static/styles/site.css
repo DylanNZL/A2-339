@@ -3,7 +3,7 @@ body {
     background-color: lightgrey;
     margin: 2%;
 }
-form{
+#createMyUser {
     width: 150px; height: 390px; padding: 5px;
 
 }
