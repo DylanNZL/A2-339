@@ -187,6 +187,16 @@ $collection->attachRoute(
     )
 );
 
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/Delete/:id', array(
+            '_controller' => 'agilman\a2\controller\BankAccountController::deleteAction',
+            'methods' => 'GET',
+            'name' => 'bankAccountDelete'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');
 

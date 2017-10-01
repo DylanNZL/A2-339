@@ -10,6 +10,7 @@ include "session.phtml";
             <th>Number</th>
             <th>Name</th>
             <th>Balance</th>
+            <th></th>
         </thead>
         <tbody>
             <?php foreach ($bankAccounts as $account) {
@@ -19,6 +20,7 @@ include "session.phtml";
                     <td><a href=<?php echo $link . ">".$account->getId() ?> </a></td>
                     <td><a href=<?php echo $link . ">".$account->getName() ?> </a></td>
                     <td><a href=<?php echo $link . ">".$account->getBalance()?> </a></td>
+                    <td><a href="/BankAccount/Delete/<?php echo $account->getId() ?>">Delete</a></td>
                 </tr>
             <?php } ?>
         </tbody>

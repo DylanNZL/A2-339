@@ -42,6 +42,29 @@ class BankAccountController extends Controller
         echo $view->render();
     }
 
+    public function indexActionWithError($error) {
+        session_name('UserDetails');
+        session_start();
+        error_log($_SESSION['MyUserId']);
+        // Check user has logged in
+        if (!isset($_SESSION['MyUserId']) || $_SESSION['MyUserId'] == null) {
+            $view = new View('myUserIndex');
+            echo $view->render();
+            echo $_SESSION['MyUserId'];
+            return;
+        }
+
+        // Get users bank accounts
+        $bankAccountCollection = new BankAccountCollectionModel($_SESSION['MyUserId']);
+        $bankAccounts = $bankAccountCollection->getAccounts();
+
+        // Render
+        $view = new View('bankAccountIndex');
+        $view->addData("bankAccounts", $bankAccounts);
+        $view->addData("error", $error);
+        echo $view->render();
+    }
+
     public function createBankAccountAction() {
         session_name('UserDetails');
         session_start();
@@ -106,5 +129,20 @@ class BankAccountController extends Controller
         $bankAccount->save();
 
         TransactionController::indexAction();
+    }
+
+    public function deleteAction($id) {
+        session_name('UserDetails');
+        session_start();
+
+        $bankAccount = new BankAccountModel();
+        $bankAccount->load($id);
+
+        if ($bankAccount->getBalance() != 0) {
+            return $this->indexActionWithError("Unable to delete an account with a nonzero balance");
+        }
+        $bankAccount->delete();
+
+        return $this->indexAction();
     }
 }

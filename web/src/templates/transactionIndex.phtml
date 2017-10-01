@@ -15,7 +15,8 @@ include "session.phtml";
     </thead>
     <tbody>
         <?php foreach ($transactions as $transaction) {
-            error_log(print_r($transaction));?>
+            error_log(print_r($transaction));
+            ?>
             <tr>
                 <td>1<?php echo $transaction->getAmount() ?></td>
                 <td>2<?php echo $transaction->getType() ?></td>
