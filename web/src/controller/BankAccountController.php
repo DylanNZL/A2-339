@@ -81,18 +81,29 @@ class BankAccountController extends Controller
 
     }
 
-    public function updateAction($id) {
-
-        error_log(" look here: ");
+    public function editActionWithError($error) {
         session_name('UserDetails');
         session_start();
 
+        $view = new View("bankAccountEdit");
+        $view->addData("error", $error);
+        echo $view->render();
 
+    }
+
+    public function updateAction($id) {
+
+        session_name('UserDetails');
+        session_start();
 
         $bankAccount = new BankAccountModel();
         $bankAccount->load($id);
-        error_log(" look here: ".$bankAccount->getName());
+        if ($_POST['name'] == null) {
+            return $this->editActionWithError("Enter a name for your account");
+        }
 
+        $bankAccount->setName($_POST['name']);
+        $bankAccount->save();
 
         TransactionController::indexAction();
     }

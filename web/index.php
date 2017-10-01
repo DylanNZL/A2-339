@@ -149,6 +149,16 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
+        '/BankAccount/EditName/:id', array(
+            '_controller' => 'agilman\a2\controller\BankAccountController::updateAction',
+            'methods' => 'POST',
+            'name' => 'bankAccountEdit'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
         '/Transaction/Create', array(
             '_controller' => 'agilman\a2\controller\TransactionController::createAction',
             'methods' => 'POST',
@@ -163,15 +173,6 @@ $collection->attachRoute(
             '_controller' => 'agilman\a2\controller\BankAccountController::createBankAccountAction',
             'methods' => 'POST',
             'name' => 'bankAccountCreate'
-        )
-    )
-);
-$collection->attachRoute(
-    new Route(
-        '/BankAccount/EditName/:id', array(
-            '_controller' => 'agilman\a2\controller\BankAccountController::updateAction',
-            'methods' => 'POST',
-            'name' => 'bankAccountEdit'
         )
     )
 );

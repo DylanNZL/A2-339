@@ -8,8 +8,8 @@ include "session.phtml";
     <!---------- Body starts --------------->
     <h1>Edit Bank Account Name:  <?php echo $_SESSION['currentAccountName']?></h1>
     <br>
-    <form action="/BankAccount/<?php echo $_SESSION['currentAccount']?>" method="post">
-        Account Name: <input type="text" name="bankaccountname" placeholder="John's Savings"><br>
+    <form action="/BankAccount/EditName/<?php echo $_SESSION['currentAccount']?>" method="post">
+        Account Name: <input type="text" name="name" placeholder="John's Savings"><br>
         <input type="submit">
     </form>
     <br>
