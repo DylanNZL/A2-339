@@ -17,7 +17,6 @@ class MyUserController extends Controller
     public function indexAction() {
         $view = new View('myUserIndex');
         echo $view->render();
-//        $_COOKIE['MyUserID'] = null;
     }
 
     public function loginAction() {
@@ -79,5 +78,15 @@ class MyUserController extends Controller
         $view = new View('myUserIndex');
         echo $view->render();
         return;
+    }
+
+    public function logoutAction() {
+        session_name('UserDetails');
+        session_start();
+        session_unset();
+        session_destroy();
+
+        $view = new View('myUserIndex');
+        echo $view->render();
     }
 }
