@@ -27,7 +27,7 @@ include "session.phtml";
 <br>
 <h3>Add transaction:</h3>
 <form action="/Transaction/Create" method="POST">
-    Amount: $<input type="number" name="amount" placeholder="100.00"><br>
+    Amount: $<input type="number" name="amount" placeholder="100.00" step="0.01"><br>
     Type:<br>
     &nbsp;<input type="radio" name="type" value="Deposit" checked> Deposit<br>
     &nbsp;<input type="radio" name="type" value="Withdrawal"> Withdrawal<br>
