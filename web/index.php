@@ -166,6 +166,15 @@ $collection->attachRoute(
         )
     )
 );
+$collection->attachRoute(
+    new Route(
+        '/BankAccount/EditName/:id', array(
+            '_controller' => 'agilman\a2\controller\BankAccountController::updateAction',
+            'methods' => 'POST',
+            'name' => 'bankAccountEdit'
+        )
+    )
+);
 
 $router = new Router($collection);
 $router->setBasePath('/');

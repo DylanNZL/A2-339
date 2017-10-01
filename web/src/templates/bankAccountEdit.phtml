@@ -1,4 +1,18 @@
 <?php
 include "header.phtml";
 include "session.phtml";
+
+//<?php session_name('UserDetails'); session_start(); echo $_SESSION['currentAccount'];
 ?>
+
+    <!---------- Body starts --------------->
+    <h1>Edit Bank Account Name:  <?php echo $_SESSION['currentAccountName']?></h1>
+    <br>
+    <form action="/BankAccount/<?php echo $_SESSION['currentAccount']?>" method="post">
+        Account Name: <input type="text" name="bankaccountname" placeholder="John's Savings"><br>
+        <input type="submit">
+    </form>
+    <br>
+    <a href="/BankAccount/<?php echo $_SESSION['currentAccount']?>">Back</a>
+    <!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>

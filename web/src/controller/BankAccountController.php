@@ -68,10 +68,32 @@ class BankAccountController extends Controller
         }
         // Render the transactions page of this account
         $_SESSION['currentAccount'] = $bankAccount->getID();
+        $_SESSION['currentAccountName'] = $bankAccount->getName();
         TransactionController::indexAction();
     }
 
     public function editAction($id) {
+        session_name('UserDetails');
+        session_start();
 
+        $view = new View("bankAccountEdit");
+        echo $view->render();
+
+    }
+
+    public function updateAction($id) {
+
+        error_log(" look here: ");
+        session_name('UserDetails');
+        session_start();
+
+
+
+        $bankAccount = new BankAccountModel();
+        $bankAccount->load($id);
+        error_log(" look here: ".$bankAccount->getName());
+
+
+        TransactionController::indexAction();
     }
 }
