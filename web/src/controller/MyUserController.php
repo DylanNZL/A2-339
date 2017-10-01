@@ -53,7 +53,12 @@ class MyUserController extends Controller
     public function createAction() {
         $view = new View('myUserCreate');
         echo $view->render();
+    }
 
+    public function createActionWithError($error) {
+        $view = new View('myUserCreate');
+        $view->addData("error", $error);
+        echo $view->render();
     }
 
     public function createAccountAction()
@@ -72,9 +77,14 @@ class MyUserController extends Controller
             echo $view->render();
             return;
         }
-        $tempuser = MyUserModel::__constructwithvar($_POST["fname"], $_POST["lname"], $_POST["phone"], $_POST["address"], $_POST["email"], $_POST["password"]);
-        error_log($tempuser->getAddress());
-        $tempuser->save();
+
+
+        $tempUser = MyUserModel::__constructwithvar($_POST["fname"], $_POST["lname"], $_POST["phone"], $_POST["address"], $_POST["email"], $_POST["password"]);
+        error_log($tempUser->getAddress());
+        if (!$tempUser->checkEmail($_POST["email"])) {
+            return $this->createActionWithError("This email is taken");
+        }
+        $tempUser->save();
         $view = new View('myUserIndex');
         echo $view->render();
         return;

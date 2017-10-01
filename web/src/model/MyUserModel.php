@@ -186,4 +186,20 @@ class MyUserModel extends Model
         return $this;
     }
 
+    /**
+     * @param string $email
+     * @return bool
+     *
+     * checks whether that email exists in db or not
+     * returns true if unique
+     */
+    public function checkEmail($email) {
+        if (!$result = $this->db->query("SELECT `email` FROM `my_user` WHERE `email` = '$email';")) {
+            return false;
+        }
+
+        if ($result->num_rows != 0) { return false; }
+        return true;
+    }
+
 }

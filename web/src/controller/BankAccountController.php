@@ -80,7 +80,6 @@ class BankAccountController extends Controller
         $bankAccount = BankAccountModel::__constructwithvar($_POST["bankaccountname"], $_SESSION['MyUserId']);
         $bankAccount->save();
         $this->indexAction();
-        return;
     }
 
     public function editAction($id) {
