@@ -107,6 +107,6 @@ class TransactionController extends Controller
         $transaction = TransactionModel::__constructFromVars($accountID, $amount, $type);
         $transaction->save();
 
-        $this->indexAction();
+        $this->indexAction($accountID);
     }
 }

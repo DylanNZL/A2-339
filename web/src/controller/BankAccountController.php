@@ -107,7 +107,7 @@ class BankAccountController extends Controller
         $bankAccount->setName($_POST['name']);
         $bankAccount->save();
 
-        TransactionController::indexAction();
+        TransactionController::indexAction($id);
     }
 
     public function deleteAction($id) {
