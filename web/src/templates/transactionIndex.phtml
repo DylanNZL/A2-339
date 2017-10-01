@@ -1,6 +1,25 @@
 <?php
 include "header.phtml";
 include "session.phtml";
+
+if ($_SESSION['sort'] == "amount" && $_SESSION['order'] == "DESC") {
+    $amountSort = "/BankAccount/" . $account->getId() . "?sort=amount&order=ASC";
+} else {
+    $amountSort = "/BankAccount/" . $account->getId() . "?sort=amount&order=DESC";
+}
+
+if ($_SESSION['sort'] == "type" && $_SESSION['order'] == "DESC") {
+    $typeSort = "/BankAccount/" . $account->getId() . "?sort=type&order=ASC";
+} else {
+    $typeSort = "/BankAccount/" . $account->getId() . "?sort=type&order=DESC";
+}
+
+if ($_SESSION['sort'] == "date" && $_SESSION['order'] == "DESC") {
+    $dateSort = "/BankAccount/" . $account->getId() . "?sort=date&order=ASC";
+} else {
+    $dateSort = "/BankAccount/" . $account->getId() . "?sort=date&order=DESC";
+}
+
 ?>
 
 <p id="logout"><a href="/MyUser/Logout">Log Out</a></p>
@@ -9,18 +28,17 @@ include "session.phtml";
 <h4>Transactions for <?php echo $account->getName() ?></h4>
 <table>
     <thead>
-        <th>Amount</th>
-        <th>Type</th>
-        <th>Date</th>
+        <th><a href="<?php echo $amountSort?>">Amount</a></th>
+        <th><a href="<?php echo $typeSort?>">Type</a></th>
+        <th><a href="<?php echo $dateSort?>">Date</a></th>
     </thead>
     <tbody>
-        <?php foreach ($transactions as $transaction) {
-            error_log(print_r($transaction));
+        <?php foreach ($transactions as $trans) {
             ?>
             <tr>
-                <td>1<?php echo $transaction->getAmount() ?></td>
-                <td>2<?php echo $transaction->getType() ?></td>
-                <td>3<?php echo $transaction->getDate() ?></td>
+                <td><?php echo $trans->getAmount() ?></td>
+                <td><?php echo $trans->getType() ?></td>
+                <td><?php echo $trans->getDate() ?></td>
             </tr>
         <?php } ?>
     </tbody>

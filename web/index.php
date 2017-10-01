@@ -130,7 +130,7 @@ $collection->attachRoute(
 $collection->attachRoute(
     new Route(
         '/BankAccount/:id', array(
-            '_controller' => 'agilman\a2\controller\BankAccountController::singleAction',
+            '_controller' => 'agilman\a2\controller\TransactionController::indexAction',
             'methods' => 'GET',
             'name' => 'bankAccountSingle'
         )

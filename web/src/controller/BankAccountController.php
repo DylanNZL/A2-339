@@ -74,27 +74,6 @@ class BankAccountController extends Controller
         return;
     }
 
-    public function singleAction($id) {
-        session_name('UserDetails');
-        session_start();
-        $bankAccount = new BankAccountModel();
-        $bankAccount->load($id);
-        // Check we found the account
-        if ($bankAccount->getBalance() == null) {
-            $this->indexAction();
-            return;
-        }
-        // Check the user owns the account
-        if ($bankAccount->getUserID() != $_SESSION['MyUserId']) {
-            $this->indexAction();
-            return;
-        }
-        // Render the transactions page of this account
-        $_SESSION['currentAccount'] = $bankAccount->getID();
-        $_SESSION['currentAccountName'] = $bankAccount->getName();
-        TransactionController::indexAction();
-    }
-
     public function editAction($id) {
         session_name('UserDetails');
         session_start();

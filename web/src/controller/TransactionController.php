@@ -16,20 +16,41 @@ use agilman\a2\view\View;
 
 class TransactionController extends Controller
 {
-    public function indexAction() {
+    public function indexAction($id) {
         session_name('UserDetails');
         session_start();
 
-        if (!isset($_SESSION['currentAccount']) || $_SESSION['currentAccount'] == null) {
+        $bankAccount = new BankAccountModel();
+        $bankAccount->load($id);
+        // Check we found the account
+        if ($bankAccount->getBalance() == null) {
             BankAccountController::indexAction();
             return;
         }
+        // Check the user owns the account
+        if ($bankAccount->getUserID() != $_SESSION['MyUserId']) {
+            BankAccountController::indexAction();
+            return;
+        }
+        // Render the transactions page of this account
+        $_SESSION['currentAccount'] = $bankAccount->getID();
+        $_SESSION['currentAccountName'] = $bankAccount->getName();
 
-        $bankAccount = new BankAccountModel();
-        $bankAccount->load($_SESSION['currentAccount']);
+        $sorter = urldecode(substr($_SERVER["REQUEST_URI"], 12));
+        $sorter = explode('?', $sorter);
+        error_log($sorter[1]);
+        if ($sorter[1] != null) {
+            parse_str($sorter[1], $out);
+            $sort = $out['sort'];
+            $order = $out['order'];
+            error_log($sort);
+            error_log($order);
+            $_SESSION['sort'] = $sort;
+            $_SESSION['order'] = $order;
+        }
 
-        $transactions = new TransactionCollectionModel($bankAccount->getID());
-        $transactions->getTransactions();
+        $transactions = new TransactionCollectionModel($bankAccount->getID(),$sort??null, $order??null);
+        $transactions = $transactions->getTransactions();
 
         $view = new View('transactionIndex');
         $view->addData("account", $bankAccount);
