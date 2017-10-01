@@ -6,6 +6,7 @@ include "session.phtml";
 ?>
 
     <!---------- Body starts --------------->
+    <p><a href="/MyUser/Logout">Log Out</a></p>
     <h1>Edit Bank Account Name:  <?php echo $_SESSION['currentAccountName']?></h1>
     <br>
     <form action="/BankAccount/EditName/<?php echo $_SESSION['currentAccount']?>" method="post">
