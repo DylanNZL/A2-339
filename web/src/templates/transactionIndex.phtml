@@ -4,7 +4,7 @@ include "session.phtml";
 ?>
 
 <h1><?php echo $account->getName() . " : $" . $account->getBalance() ?></h1>
-<p><a href="/BankAccount/EditName/"<?php $account->getId()?>>Edit Name</a></p>
+<p><a href="/BankAccount/EditName/<?php echo $account->getId()?>">Edit Name</a></p>
 <br>
 <h3>Transactions for <?php echo $account->getName() ?></h3>
 <table>
