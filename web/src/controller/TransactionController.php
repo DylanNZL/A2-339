@@ -32,12 +32,27 @@ class TransactionController extends Controller
         $transactions = new TransactionCollectionModel($bankAccount->getID());
         $transactions->getTransactions();
 
-        $testTrans = new TransactionModel();
-        $testTrans->load(1);
-
         $view = new View('transactionIndex');
         $view->addData("account", $bankAccount);
         $view->addData("transactions", $transactions);
         echo $view->render();
+    }
+
+    public function createAction() {
+        session_name('UserDetails');
+        session_start();
+
+        if (!isset($_POST['amount']) || !isset($_POST['type'])) {
+            return $this->indexAction();
+        }
+
+        $amount = $_POST['amount'];
+        $type = substr($_POST['type'], 0,1);
+
+        $transaction = TransactionModel::__constructFromVars($_SESSION['currentAccount'], $amount, $type);
+
+        $transaction->save();
+
+        $this->indexAction();
     }
 }

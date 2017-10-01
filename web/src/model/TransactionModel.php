@@ -77,6 +77,31 @@ class TransactionModel extends Model
     }
 
     /**
+     * TransactionModel constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * @param int $accountId
+     * @param float $amount
+     * @param string $type
+     *
+     * @return TransactionModel
+     */
+    public static function __constructFromVars($accountId, $amount, $type) {
+        $trans = new TransactionModel();
+        $trans->_accountID = $accountId;
+        $trans->_amount = $amount;
+        $trans->_type = $type;
+        date_default_timezone_set('Pacific/Auckland');
+        $trans->_date = Date("Y-m-d H:i:s");;
+        return $trans;
+    }
+
+    /**
      * @param int ID
      *
      * @return $this TransactionModel
@@ -105,7 +130,7 @@ class TransactionModel extends Model
     {
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `transaction` VALUES (NULL,$this->_accountID,$this->_amount,$this->_date,$this->_type);")) {
+            if (!$result = $this->db->query("INSERT INTO `transaction` VALUES (NULL,$this->_accountID,$this->_amount,'$this->_date','$this->_type');")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;
