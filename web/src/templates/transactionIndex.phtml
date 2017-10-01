@@ -4,10 +4,9 @@ include "session.phtml";
 ?>
 
 <p id="logout"><a href="/MyUser/Logout">Log Out</a></p>
-<h1><?php echo $account->getName() . " : $" . $account->getBalance() ?></h1>
-<p><a href="/BankAccount/EditName/<?php echo $account->getId()?>">Edit Name</a></p>
+<h2><?php echo $account->getName() . " : $" . $account->getBalance() ?> &nbsp;&nbsp;<a href="/BankAccount/EditName/<?php echo $account->getId()?>">Edit Name</a></h2>
 <br>
-<h3>Transactions for <?php echo $account->getName() ?></h3>
+<h4>Transactions for <?php echo $account->getName() ?></h4>
 <table>
     <thead>
         <th>Amount</th>
@@ -26,7 +25,7 @@ include "session.phtml";
     </tbody>
 </table>
 <br>
-<h3>Add transaction:</h3>
+<h4>Add transaction:</h4>
 <form action="/Transaction/Create" method="POST">
     Amount: $<input type="number" name="amount" placeholder="100.00" step="0.01"><br>
     Type:<br>
