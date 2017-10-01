@@ -23,7 +23,7 @@ class Model
     const DB_HOST = 'mysql';
     const DB_USER = 'root';
     const DB_PASS = 'root';
-    const DB_NAME = 'agilman_a2';
+    const DB_NAME = 'legitBankDatabase';
 
     function __construct()
     {
@@ -48,32 +48,6 @@ class Model
         if (!$this->db->select_db(Model::DB_NAME)) {
             // somethings not right.. handle it
             error_log("Mysql database not available!",0);
-        }
-
-        $result = $this->db->query("SHOW TABLES LIKE 'account';");
-
-        if ($result->num_rows == 0) {
-            // table doesn't exist
-            // create it and populate with sample data
-
-            $result = $this->db->query(
-                "CREATE TABLE `account` (
-                                          `id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `name` VARCHAR(256) DEFAULT NULL,
-                                          PRIMARY KEY (`id`) );"
-            );
-
-            if (!$result) {
-                // handle appropriately
-                error_log("Failed creating table account", 0);
-            }
-
-            if (!$this->db->query(
-                "INSERT INTO `account` VALUES (NULL,'Bob'), (NULL,'Mary');"
-            )) {
-                // handle appropriately
-                error_log("Failed creating sample data!", 0);
-            }
         }
 
             //----------------------------------------------------------------------------
