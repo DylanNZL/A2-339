@@ -82,10 +82,11 @@ class TransactionModel extends Model
      * @return $this TransactionModel
      */
     public function load($id) {
-        if (!$result = $this->db->query("SELECT * FROM `user` WHERE `id` = $id")) {
+        error_log("loaded ".$id);
+        if (!$result = $this->db->query("SELECT * FROM `transaction` WHERE `id` = $id")) {
             // throw new ...
         }
-
+        error_log($result);
         $result = $result->fetch_assoc();
         $this->_id = $id;
         $this->_accountID = $result['account_id'];
@@ -104,7 +105,7 @@ class TransactionModel extends Model
     {
         if (!isset($this->_id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `user` VALUES (NULL,$this->_accountID,$this->_amount,$this->_date,$this->_type);")) {
+            if (!$result = $this->db->query("INSERT INTO `transaction` VALUES (NULL,$this->_accountID,$this->_amount,$this->_date,$this->_type);")) {
                 // throw new ...
             }
             $this->_id = $this->db->insert_id;

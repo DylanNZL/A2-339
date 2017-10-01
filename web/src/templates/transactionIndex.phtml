@@ -3,7 +3,7 @@ include "header.phtml";
 include "session.phtml";
 ?>
 
-<h3><?php echo $account->getName() . " : $" . $account->getBalance() ?></h3>
+<h1><?php echo $account->getName() . " : $" . $account->getBalance() ?></h1>
 <p><a href="/BankAccount/EditName/"<?php $account->getId()?>>Edit Name</a></p>
 <br>
 <h3>Transactions for <?php echo $account->getName() ?></h3>
@@ -16,9 +16,9 @@ include "session.phtml";
     <tbody>
         <?php foreach ($transactions as $transaction) {?>
             <tr>
-                <td><?php echo $transaction->getAmount() ?></td>
-                <td><?php echo $transaction->getType() ?></td>
-                <td><?php echo $transaction->getDate() ?></td>
+                <td>1<?php echo $transaction->getAmount() ?></td>
+                <td>2<?php echo $transaction->getType() ?></td>
+                <td>3<?php echo $transaction->getDate() ?></td>
             </tr>
         <?php } ?>
     </tbody>

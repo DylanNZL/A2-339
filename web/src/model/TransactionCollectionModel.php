@@ -18,10 +18,10 @@ class TransactionCollectionModel extends Model
         parent::__construct();
         if (!$result = $this->db->query("SELECT `id` FROM `transaction` WHERE `account_id` = $account")) {
             // throw new ...
-        } //else {
+        }
         $this->_transactionIDs = array_column($result->fetch_all(), 0);
         $this->_numTransactions = $result->num_rows;
-//        }
+        error_log("Num" . $this->_numTransactions);
     }
 
     /**
@@ -31,6 +31,7 @@ class TransactionCollectionModel extends Model
      */
     public function getTransactions()
     {
+        error_log("number" . $this->_numTransactions);
         foreach ($this->_transactionIDs as $id) {
             // Use a generator to save on memory/resources
             // load accounts from DB one at a time only when required

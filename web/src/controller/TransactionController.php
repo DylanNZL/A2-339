@@ -15,9 +15,6 @@ use agilman\a2\view\View;
 
 class TransactionController extends Controller
 {
-    /**
-     * @param BankAccountModel $bankAccount
-     */
     public function indexAction() {
         session_name('UserDetails');
         session_start();
@@ -33,7 +30,6 @@ class TransactionController extends Controller
         error_log($bankAccount->getID());
 
         $transactions = new TransactionCollectionModel($bankAccount->getID());
-//        $transactions = new TransactionCollectionModel(1);
         $transactions->getTransactions();
 
         $view = new View('transactionIndex');
