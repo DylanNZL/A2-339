@@ -74,6 +74,9 @@ class TransactionController extends Controller
         $account = new BankAccountModel();
         $account->load($accountID);
 
+        if ($amount <= 0) {
+            return $this->indexActionWithError("Enter a valid amount");
+        }
         if ($type == "W" && ($account->getBalance() - $amount) < 0) {
             return $this->indexActionWithError("You can't withdraw that much");
         }
